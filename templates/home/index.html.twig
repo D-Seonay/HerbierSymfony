@@ -1,0 +1,15 @@
+{# home/index.html.twig #}
+
+{% extends 'base.html.twig' %}
+
+{% block title %}Photothèque de chatons{% endblock %}
+
+{% block body %}
+
+<h1>Liste des catégories</h1>
+<div style="display:flex; justify-content:space-around; align-items:center; width: 80vw; margin: 1vh auto;">
+
+<div class="display:flex; justify-content: center ">
+    <a href="{{ path('app_lieux') }}" class="btn btn-primary">Ajouter une photo</a>
+</div>
+{% endblock %}
