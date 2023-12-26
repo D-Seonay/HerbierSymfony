@@ -26,7 +26,7 @@ class Releves
     #[ORM\Column(length: 255)]
     private ?string $visualisation = null;
 
-    #[ORM\OneToOne(cascade: ['persist', 'remove'])]
+    #[ORM\ManyToOne(targetEntity: Lieu::class, inversedBy: 'releves')]
     private ?Lieu $lieu = null;
 
     public function getId(): ?int
