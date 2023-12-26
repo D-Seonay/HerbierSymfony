@@ -19,8 +19,8 @@
         <tbody>
         {% for relefe in releves %}
             <tr>
-                <td>{{ relefe.date ? relefe.date|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ relefe.lieu.nom }}</td> {# Supposons que "lieu" est la relation entre Releves et Lieu, et "nom" est le champ du nom du lieu #}
+                <td>{{ relefe.date ? relefe.date|date('d/m/Y') : '' }}</td>
+                <td>{{ relefe.lieu.nom }}</td>
                 <td>{{ relefe.releveBrut }}</td>
                 <td>{{ relefe.tableau }}</td>
                 <td>{{ relefe.visualisation }}</td>
