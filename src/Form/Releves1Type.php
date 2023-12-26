@@ -20,7 +20,7 @@ class Releves1Type extends AbstractType
             ->add('visualisation')
             ->add('lieu', EntityType::class, [
                 'class' => Lieu::class,
-'choice_label' => 'id',
+'choice_label' => 'nom',
             ])
         ;
     }
