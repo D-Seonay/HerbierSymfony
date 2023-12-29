@@ -43,10 +43,11 @@ class RelevesController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_releves_show', methods: ['GET'])]
-    public function show(Releves $relefe): Response
+    public function show(Releves $relefe, RelevesRepository $relevesRepository): Response
     {
         return $this->render('releves/show.html.twig', [
             'relefe' => $relefe,
+            'releves' => $relevesRepository->findAll(),
         ]);
     }
 
@@ -82,10 +83,10 @@ class RelevesController extends AbstractController
     #[Route('/{id}/visualisation', name: 'app_releves_visualisation', methods: ['GET'])]
     public function visualisation(Releves $relefe, RelevesRepository $relevesRepository): Response
     {
-        return $this->render('releves/visualisation.html.twig', [
+        return $this->render('releves/_visualisation.html.twig', [
             'relefe' => $relefe,
             'releves' => $relevesRepository->findAll(),
-            
+
         ]);
     }
 }

@@ -16,8 +16,6 @@ class Releves1Type extends AbstractType
         $builder
             ->add('date')
             ->add('releveBrut')
-            ->add('tableau')
-            ->add('visualisation')
             ->add('lieu', EntityType::class, [
                 'class' => Lieu::class,
 'choice_label' => 'nom',

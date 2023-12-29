@@ -20,12 +20,8 @@
                 <td>{{ relefe.releveBrut }}</td>
             </tr>
             <tr>
-                <th>Tableau</th>
-                <td>{{ relefe.tableau }}</td>
-            </tr>
-            <tr>
                 <th>Visualisation</th>
-                <td>{{ relefe.visualisation }}</td>
+                <td>{{ include('releves/_visualisation.html.twig') }}</td>
             </tr>
         </tbody>
     </table>

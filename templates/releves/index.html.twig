@@ -24,8 +24,8 @@
                 <td>{{ relefe.date ? relefe.date|date('d/m/Y') : '' }}</td>
                 <td>{{ relefe.lieu.nom }}</td>
                 <td>{{ relefe.releveBrut }}</td>
-                <td>{{ relefe.tableau }}</td>
-                <td>{{ relefe.visualisation }}</td>
+                <td>Text</td>
+                <td>{{ include('releves/_visualisation.html.twig', {'id': relefe.id}) }}</td>
                 <td>
                     <a href="{{ path('app_releves_edit', {'id': relefe.id}) }}" class="btn btn-primary">Edit</a>
                     <a href="{{ path('app_releves_delete', {'id': relefe.id}) }}" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?')">Delete</a>
