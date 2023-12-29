@@ -20,12 +20,6 @@ class Releves
     #[ORM\Column(length: 255)]
     private ?string $releveBrut = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $tableau = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $visualisation = null;
-
     #[ORM\ManyToOne(targetEntity: Lieu::class, inversedBy: 'releves')]
     private ?Lieu $lieu = null;
 
@@ -54,30 +48,6 @@ class Releves
     public function setReleveBrut(string $releveBrut): static
     {
         $this->releveBrut = $releveBrut;
-
-        return $this;
-    }
-
-    public function getTableau(): ?string
-    {
-        return $this->tableau;
-    }
-
-    public function setTableau(string $tableau): static
-    {
-        $this->tableau = $tableau;
-
-        return $this;
-    }
-
-    public function getVisualisation(): ?string
-    {
-        return $this->visualisation;
-    }
-
-    public function setVisualisation(string $visualisation): static
-    {
-        $this->visualisation = $visualisation;
 
         return $this;
     }
