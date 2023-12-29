@@ -78,4 +78,14 @@ class RelevesController extends AbstractController
 
         return $this->redirectToRoute('app_releves_index', [], Response::HTTP_SEE_OTHER);
     }
+
+    #[Route('/{id}/visualisation', name: 'app_releves_visualisation', methods: ['GET'])]
+    public function visualisation(Releves $relefe, RelevesRepository $relevesRepository): Response
+    {
+        return $this->render('releves/visualisation.html.twig', [
+            'relefe' => $relefe,
+            'releves' => $relevesRepository->findAll(),
+            
+        ]);
+    }
 }

@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Releves index{% endblock %}
+{% block title %}Relevés index{% endblock %}
 
 {% block container %}
-    <h1>Releves index</h1>
+    <h1>Relevés index</h1>
 
     <table class="table">
         <thead>
             <tr>
+                <th>Id</th>
                 <th>Date</th>
                 <th>Lieu</th>
                 <th>ReleveBrut</th>
@@ -19,6 +20,7 @@
         <tbody>
         {% for relefe in releves %}
             <tr>
+                <td>{{ relefe.id }}</td>
                 <td>{{ relefe.date ? relefe.date|date('d/m/Y') : '' }}</td>
                 <td>{{ relefe.lieu.nom }}</td>
                 <td>{{ relefe.releveBrut }}</td>
@@ -38,4 +40,7 @@
     </table>
 
     <a href="{{ path('app_releves_new') }}" class="btn btn-success">Create new</a>
+    
+
+
 {% endblock %}
