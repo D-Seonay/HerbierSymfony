@@ -1,13 +1,11 @@
-{% block body %}
-    {% for index, releve in releves %}
+{% block visualisation %}
+    {% for releve in releves %}
         {% if id == releve.id %}
             <div id="visualization_{{ releve.id }}" class="visualization"></div>
-
             <script>
-                console.log("{{ id }} + {{ releve.id }}");
                 const container{{ releve.id }} = document.getElementById("visualization_{{ releve.id }}");
-                const dataString{{ releve.id }} = "{{ releve.releveBrut }}";
-                const data{{ releve.id }} = dataString{{ releve.id }}.split('/').map(Number);
+                const dataStringVisualisation{{ releve.id }} = "{{ releve.releveBrut }}";
+                const dataVisualisation{{ releve.id }} = dataStringVisualisation{{ releve.id }}.split('/').map(Number);
 
                 function shuffle(array) {
                     for (let i = array.length - 1; i > 0; i--) {
@@ -17,7 +15,7 @@
                     return array;
                 }
 
-                data{{ releve.id }}.forEach(value => {
+                dataVisualisation{{ releve.id }}.forEach(value => {
                     const table = document.createElement("table");
                     table.setAttribute("class", "sub-table");
 
@@ -46,26 +44,27 @@
                     container{{ releve.id }}.appendChild(table);
                 });
             </script>
+
+            <style>
+                /* Les styles CSS spécifiques à cette visualisation */
+                #visualization_{{ releve.id }} {
+                    display: grid;
+                    grid-template-columns: repeat(3, auto);
+                    grid-gap: 5px;
+                    justify-content: center;
+                }
+
+                .sub-table {
+                    border-collapse: collapse;
+                }
+
+                .sub-square {
+                    width: 20px;
+                    height: 20px;
+                    border: 1px solid black;
+                    background-color: white;
+                }
+            </style>
         {% endif %}
     {% endfor %}
-    
-    <style>
-        .visualization {
-            display: grid;
-            grid-template-columns: repeat(3, auto);
-            grid-gap: 5px;
-            justify-content: center;
-        }
-
-        .sub-table {
-            border-collapse: collapse;
-        }
-
-        .sub-square {
-            width: 20px;
-            height: 20px;
-            border: 1px solid black;
-            background-color: white;
-        }
-    </style>
 {% endblock %}

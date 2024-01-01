@@ -1,0 +1,49 @@
+{% block tableau %}
+    {% for index, releve in releves %}
+        {% if id == releve.id %}
+            <div class="table-container" id="table_{{ releve.id }}" class="data-table"></div>
+            <script>
+                const containerTable{{ releve.id }} = document.getElementById("table_{{ releve.id }}");
+                const dataStringTableau{{ releve.id }} = "{{ releve.releveBrut }}";
+                const dataTableau{{ releve.id }} = dataStringTableau{{ releve.id }}.split('/').map(Number);
+
+                const table{{ releve.id }} = document.createElement("table");
+                table{{ releve.id }}.setAttribute("class", "data-table");
+
+                let dataIndex{{ releve.id }} = 0;
+
+                for (let i = 0; i < 3; i++) {
+                    const row = table{{ releve.id }}.insertRow();
+
+                    for (let j = 0; j < 3; j++) {
+                        const cell = row.insertCell();
+                        if (dataIndex{{ releve.id }} < dataTableau{{ releve.id }}.length) {
+                            cell.textContent = dataTableau{{ releve.id }}[dataIndex{{ releve.id }}];
+                        } else {
+                            cell.textContent = 'N/A';
+                        }
+                        dataIndex{{ releve.id }}++;
+                    }
+                }
+
+                containerTable{{ releve.id }}.appendChild(table{{ releve.id }});
+            </script>
+        {% endif %}
+    {% endfor %}
+
+    <style>
+        /* Vos styles pour les tableaux */
+        .data-table {
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+        .data-table td {
+            border: 1px solid #000;
+            padding: 10px;
+            text-align: center;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+{% endblock %}
