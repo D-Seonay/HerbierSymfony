@@ -14,11 +14,26 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/')]
 class RelevesController extends AbstractController
 {
-    #[Route('/', name: 'app_releves_index', methods: ['GET'])]
-    public function index(RelevesRepository $relevesRepository): Response
+    #[Route('/', name: 'app_releves_index', methods: ['GET', 'POST'])]
+    public function index(Request $request, RelevesRepository $relevesRepository, EntityManagerInterface $entityManager): Response
     {
+        $relefe = new Releves();
+        $form = $this->createForm(Releves1Type::class, $relefe);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager->persist($relefe);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_releves_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+
         return $this->render('releves/index.html.twig', [
             'releves' => $relevesRepository->findAll(),
+            'relefe' => $relefe,
+            'form' => $form,
+            
         ]);
     }
 
@@ -80,13 +95,4 @@ class RelevesController extends AbstractController
         return $this->redirectToRoute('app_releves_index', [], Response::HTTP_SEE_OTHER);
     }
 
-    #[Route('/{id}/visualisation', name: 'app_releves_visualisation', methods: ['GET'])]
-    public function visualisation(Releves $relefe, RelevesRepository $relevesRepository): Response
-    {
-        return $this->render('releves/_visualisation.html.twig', [
-            'relefe' => $relefe,
-            'releves' => $relevesRepository->findAll(),
-
-        ]);
-    }
 }
